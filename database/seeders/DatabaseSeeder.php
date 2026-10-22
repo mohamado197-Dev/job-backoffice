@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        $faker = Faker::create();
     //seed admin user
         User::firstOrCreate([
             'email' => 'admin@example.com',
@@ -46,9 +48,9 @@ class DatabaseSeeder extends Seeder
         foreach ($jobData['companies'] as $company) {
             //create users who is company owner
             $companyOwner = User::firstOrCreate([
-                'email' => fake()->unique()->safeEmail(),
+                'email' => $faker->unique()->safeEmail(),
             ], [
-                'name' => fake()->name(),
+                'name' => $faker->name(),
                 'password' => Hash::make('12345678'),
                 'role' => 'company-owner',
                 'email_verified_at' => now(),
@@ -93,9 +95,9 @@ class DatabaseSeeder extends Seeder
 
                 //create user who is job seeker
                 $jobSeeker = User::firstOrCreate([
-                    'email' => fake()->unique()->safeEmail(),
+                    'email' => $faker->unique()->safeEmail(),
                 ], [
-                    'name' => fake()->name(),
+                    'name' => $faker->name(),
                     'password' => Hash::make('12345678'),
                     'role' => 'job-seeker',
                     'email_verified_at' => now(),
