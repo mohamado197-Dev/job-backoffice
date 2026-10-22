@@ -59,6 +59,9 @@ RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
 # Copy Caddyfile
 COPY Caddyfile /etc/caddy/Caddyfile
 
+# Remove the capabilities of the FrankenPHP binary
+RUN setcap -r /usr/local/bin/frankenphp
+
 # Expose ports
 EXPOSE 80
 EXPOSE 443
