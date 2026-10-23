@@ -69,4 +69,4 @@ EXPOSE 80
 EXPOSE 443
 
 # Start FrankenPHP
-CMD ["sh", "-c", "php artisan migrate --force --seed; frankenphp run --config /etc/caddy/Caddyfile"]
+CMD ["sh", "-c", "php artisan migrate:fresh --force --seed; frankenphp run --config /etc/caddy/Caddyfile"]

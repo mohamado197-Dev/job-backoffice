@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
                 'description' => $jobVacancy['description'],
                 'location' => $jobVacancy['location'],
                 'salary' => $jobVacancy['salary'],
-                'type' => $jobVacancy['type'],
+                'type' => strtolower($jobVacancy['type']),
                 'category_id' => $jobCategory->id,
                 ]);
             
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
                     'resume_id' => $resume->id,
                     'aiGeneratedScore' => $jobApplication['aiGeneratedScore'],
                     'aiGeneratedFeedback' => $jobApplication['aiGeneratedFeedback'],
-                    'status' => $jobApplication['status'],
+                    'status' => strtolower($jobApplication['status']),
                 ]);
             }
         }
