@@ -48,7 +48,7 @@ class DashboardController extends Controller
         
         //conversion rates (top 10)
         $conversionRates = JobVacancy::withCount('jobApplications as totalCount')
-                                    ->having('totalCount', '>', 0)
+                                    ->has('jobApplications')
                                     ->orderByDesc('totalCount')
                                     ->limit(5)
                                     ->get()
@@ -99,7 +99,7 @@ class DashboardController extends Controller
         //conversion rates of the company
         $conversionRates = JobVacancy::withCount('jobApplications as totalCount')
                                                 ->whereIn('id', $company->jobVacancies->pluck('id'))
-                                                ->having('totalCount', '>', 0)
+                                                ->has('jobApplications')
                                                 ->orderByDesc('totalCount')
                                                 ->limit(5)
                                                 ->get()
